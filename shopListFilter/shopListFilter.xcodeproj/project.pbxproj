@@ -3,17 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		41F4AAF0995750CA3D618E9F /* Pods_shopListFilterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75C344AA29861A44B7A95744 /* Pods_shopListFilterUITests.framework */; };
 		6891DFF1B6EE70ED5C10C2A3 /* Pods_shopListFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276856868BBF964347982AD9 /* Pods_shopListFilter.framework */; };
 		9C0C9228B69A5CC84D439F7B /* Pods_shopListFilterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1487693EBD5EC71F7A05F19D /* Pods_shopListFilterTests.framework */; };
+		DB000D3F2336A66A0091F9D9 /* UIViewController+Stroyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000D3E2336A66A0091F9D9 /* UIViewController+Stroyboard.swift */; };
 		DB607F5023369DB10003C768 /* ShopFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F4D23369DB10003C768 /* ShopFilterViewController.swift */; };
 		DB607F5123369DB10003C768 /* ShopFilterViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */; };
 		DB607F5623369E0C0003C768 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F5323369E0C0003C768 /* ShopListViewController.swift */; };
 		DB607F5723369E0C0003C768 /* ShopListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F5423369E0C0003C768 /* ShopListViewReactor.swift */; };
+		DBC3CCC02336B11000B8557D /* ShopRankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCBF2336B11000B8557D /* ShopRankingCell.swift */; };
+		DBC3CCC22336B15800B8557D /* ShopRankingCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCC12336B15800B8557D /* ShopRankingCellReactor.swift */; };
+		DBC3CCC42336B54D00B8557D /* WeekRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCC32336B54D00B8557D /* WeekRank.swift */; };
+		DBC3CCC62337846B00B8557D /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCC52337846B00B8557D /* Shop.swift */; };
+		DBC3CCC823378E8F00B8557D /* ShopRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCC723378E8F00B8557D /* ShopRank.swift */; };
+		DBC3CCCB2337959900B8557D /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCCA2337959900B8557D /* Age.swift */; };
+		DBC3CCCD2337987C00B8557D /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCCC2337987C00B8557D /* Style.swift */; };
 		DBDD42EB2336108A00A2608F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDD42EA2336108A00A2608F /* AppDelegate.swift */; };
 		DBDD42F02336108A00A2608F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBDD42EE2336108A00A2608F /* Main.storyboard */; };
 		DBDD42F22336108D00A2608F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBDD42F12336108D00A2608F /* Assets.xcassets */; };
@@ -48,10 +56,18 @@
 		5E5A99B60D639F6150B58B4B /* Pods-shopListFilterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shopListFilterTests.release.xcconfig"; path = "Target Support Files/Pods-shopListFilterTests/Pods-shopListFilterTests.release.xcconfig"; sourceTree = "<group>"; };
 		75C344AA29861A44B7A95744 /* Pods_shopListFilterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shopListFilterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		988FCA9D3C122202B06C4F31 /* Pods-shopListFilter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shopListFilter.debug.xcconfig"; path = "Target Support Files/Pods-shopListFilter/Pods-shopListFilter.debug.xcconfig"; sourceTree = "<group>"; };
+		DB000D3E2336A66A0091F9D9 /* UIViewController+Stroyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Stroyboard.swift"; sourceTree = "<group>"; };
 		DB607F4D23369DB10003C768 /* ShopFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterViewController.swift; sourceTree = "<group>"; };
 		DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterViewReactor.swift; sourceTree = "<group>"; };
 		DB607F5323369E0C0003C768 /* ShopListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
 		DB607F5423369E0C0003C768 /* ShopListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewReactor.swift; sourceTree = "<group>"; };
+		DBC3CCBF2336B11000B8557D /* ShopRankingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopRankingCell.swift; sourceTree = "<group>"; };
+		DBC3CCC12336B15800B8557D /* ShopRankingCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopRankingCellReactor.swift; sourceTree = "<group>"; };
+		DBC3CCC32336B54D00B8557D /* WeekRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRank.swift; sourceTree = "<group>"; };
+		DBC3CCC52337846B00B8557D /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		DBC3CCC723378E8F00B8557D /* ShopRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopRank.swift; sourceTree = "<group>"; };
+		DBC3CCCA2337959900B8557D /* Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Age.swift; sourceTree = "<group>"; };
+		DBC3CCCC2337987C00B8557D /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		DBDD42E72336108A00A2608F /* shopListFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shopListFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDD42EA2336108A00A2608F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBDD42EF2336108A00A2608F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,7 +121,6 @@
 				E2B6621C0CE5A8D1469F72C2 /* Pods-shopListFilterUITests.debug.xcconfig */,
 				2FB91D7B2FAF3A6C91432DA1 /* Pods-shopListFilterUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -117,6 +132,60 @@
 				75C344AA29861A44B7A95744 /* Pods_shopListFilterUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB000D392336A54C0091F9D9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DB607F4D23369DB10003C768 /* ShopFilterViewController.swift */,
+				DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */,
+				DB607F5323369E0C0003C768 /* ShopListViewController.swift */,
+				DB607F5423369E0C0003C768 /* ShopListViewReactor.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DB000D3A2336A5710091F9D9 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		DB000D3B2336A5920091F9D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DBC3CCC32336B54D00B8557D /* WeekRank.swift */,
+				DBC3CCC52337846B00B8557D /* Shop.swift */,
+				DBC3CCC723378E8F00B8557D /* ShopRank.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DB000D3C2336A5A10091F9D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DBC3CCBF2336B11000B8557D /* ShopRankingCell.swift */,
+				DBC3CCC12336B15800B8557D /* ShopRankingCellReactor.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DB000D3D2336A5C90091F9D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DB000D3E2336A66A0091F9D9 /* UIViewController+Stroyboard.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DBC3CCC92337954F00B8557D /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				DBC3CCCA2337959900B8557D /* Age.swift */,
+				DBC3CCCC2337987C00B8557D /* Style.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		DBDD42DE2336108A00A2608F = {
@@ -144,11 +213,13 @@
 		DBDD42E92336108A00A2608F /* shopListFilter */ = {
 			isa = PBXGroup;
 			children = (
+				DB000D3D2336A5C90091F9D9 /* Extensions */,
+				DBC3CCC92337954F00B8557D /* Enums */,
+				DB000D3B2336A5920091F9D9 /* Models */,
+				DB000D3A2336A5710091F9D9 /* Sections */,
+				DB000D3C2336A5A10091F9D9 /* Views */,
+				DB000D392336A54C0091F9D9 /* ViewControllers */,
 				DBDD42EA2336108A00A2608F /* AppDelegate.swift */,
-				DB607F4D23369DB10003C768 /* ShopFilterViewController.swift */,
-				DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */,
-				DB607F5323369E0C0003C768 /* ShopListViewController.swift */,
-				DB607F5423369E0C0003C768 /* ShopListViewReactor.swift */,
 				DBDD42EE2336108A00A2608F /* Main.storyboard */,
 				DBDD42F12336108D00A2608F /* Assets.xcassets */,
 				DBDD42F32336108D00A2608F /* LaunchScreen.storyboard */,
@@ -186,6 +257,7 @@
 				DBDD42E32336108A00A2608F /* Sources */,
 				DBDD42E42336108A00A2608F /* Frameworks */,
 				DBDD42E52336108A00A2608F /* Resources */,
+				C31F5C4B7DA3113CBA64D546 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -349,6 +421,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C31F5C4B7DA3113CBA64D546 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-shopListFilter/Pods-shopListFilter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-shopListFilter/Pods-shopListFilter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-shopListFilter/Pods-shopListFilter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FA781CBEDDD94AB5A4FD350D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,8 +468,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB607F5623369E0C0003C768 /* ShopListViewController.swift in Sources */,
+				DBC3CCC823378E8F00B8557D /* ShopRank.swift in Sources */,
+				DB000D3F2336A66A0091F9D9 /* UIViewController+Stroyboard.swift in Sources */,
+				DBC3CCC42336B54D00B8557D /* WeekRank.swift in Sources */,
+				DBC3CCC62337846B00B8557D /* Shop.swift in Sources */,
+				DBC3CCCD2337987C00B8557D /* Style.swift in Sources */,
 				DB607F5023369DB10003C768 /* ShopFilterViewController.swift in Sources */,
+				DBC3CCC22336B15800B8557D /* ShopRankingCellReactor.swift in Sources */,
 				DB607F5123369DB10003C768 /* ShopFilterViewReactor.swift in Sources */,
+				DBC3CCC02336B11000B8557D /* ShopRankingCell.swift in Sources */,
+				DBC3CCCB2337959900B8557D /* Age.swift in Sources */,
 				DBDD42EB2336108A00A2608F /* AppDelegate.swift in Sources */,
 				DB607F5723369E0C0003C768 /* ShopListViewReactor.swift in Sources */,
 			);
@@ -488,7 +585,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -543,7 +640,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

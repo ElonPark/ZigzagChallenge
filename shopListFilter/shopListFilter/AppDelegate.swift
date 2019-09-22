@@ -8,6 +8,11 @@
 
 import UIKit
 
+import EPLogger
+import Then
+
+public typealias Log = EPLogger.Log
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
