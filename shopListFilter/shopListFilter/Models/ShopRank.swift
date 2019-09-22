@@ -23,9 +23,11 @@ struct ShopRank: Equatable {
     
     var ageRangeText: String {
         var rangeTitles: [String] = []
+        var titleDic: [String: Age] = [:]
         for age in ages {
-            if !rangeTitles.contains(age.rangeTitle) {
+            if titleDic[age.rangeTitle] == nil {
                 rangeTitles.append(age.rangeTitle)
+                titleDic[age.rangeTitle] = age
             }
         }
         
