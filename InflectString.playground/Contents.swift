@@ -3,20 +3,34 @@ import XCTest
 
 
 extension Character {
-     var isAlphabet: Bool {
-        return range(of: "[^a-zA-Z]", options: .regularExpression) == nil
-     }
+    var isAlphabet: Bool {
+       return (self >= "a" && self <= "z" ) || (self >= "A" && self <= "Z" )
+    }
 }
 
 func snakeCase(by originString: String) -> String {
     guard !originString.isEmpty else { return originString }
-    var tokenArray: [String] = []
     var tempString: String = ""
 
     for character in originString {
-        character.isAlphabet
+        if character.isAlphabet {
+            if let lastCharacter = tempString.last,
+                lastCharacter.isLowercase && character.isUppercase {
+                tempString.append("_")
+                tempString.append(character)
+            } else {
+                tempString.append(character)
+            }
+        } else if !tempString.isEmpty && tempString.last != "_" {
+            tempString.append("_")
+        }
     }
-    let a = Array(originString)
+    
+    if tempString.last == "_" {
+        tempString.removeLast()
+    }
+    
+    return tempString.lowercased()
 }
 
 class InflectStringTestCase: XCTestCase {
@@ -48,18 +62,21 @@ class InflectStringTestCase: XCTestCase {
     
     func testWord() {
         // given
+        let wwdc = "WWDC"
         let product = "Product"
         let shop = "Shop"
         let value = "Value"
         let zigzag = "zigzag"
         
         // when
+        let snake_wwdc = snakeCase(by: wwdc)
         let snake_product = snakeCase(by: product)
         let snake_shop = snakeCase(by: shop)
         let snake_value = snakeCase(by: value)
         let snake_zigzag = snakeCase(by: zigzag)
         
         // Then
+        XCTAssertEqual(snake_wwdc, "wwdc", "단어 변환 실패")
         XCTAssertEqual(snake_product, "product", "단어 변환 실패")
         XCTAssertEqual(snake_shop, "shop", "단어 변환 실패")
         XCTAssertEqual(snake_value, "value", "단어 변환 실패")
@@ -114,8 +131,8 @@ class InflectStringTestCase: XCTestCase {
 
     func testSpecialCharacters() {
         // given
-        let smileEmoji = "this is smile 🤣"
-        let cross = "I Love XⓍ𝓧 xx"
+        let smileEmoji = "this Is smile 🤣"
+        let cross = "I Love XX🇰🇷✕Ⓧ𝓧 xx"
         
         // when
         let snake_smile_emoji = snakeCase(by: smileEmoji)
@@ -123,10 +140,8 @@ class InflectStringTestCase: XCTestCase {
         
         // Then
         XCTAssertEqual(snake_smile_emoji, "this_is_smile", "특수문자 케이스 변환 실패")
-        XCTAssertEqual(snake_cross, "i_love_xx", "특수문자 케이스 변환 실패")
+        XCTAssertEqual(snake_cross, "i_love_xx_xx", "특수문자 케이스 변환 실패")
     }
-    
-    
 }
 
 InflectStringTestCase.defaultTestSuite.run()
