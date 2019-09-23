@@ -25,9 +25,11 @@ final class ShopListViewReactor: Reactor {
         //state
     }
     
+    let networkService: NetworkService
     let initialState: State
     
-    init() {
+    init(networkService: NetworkService) {
+        self.networkService = networkService
         initialState = State()
     }
     

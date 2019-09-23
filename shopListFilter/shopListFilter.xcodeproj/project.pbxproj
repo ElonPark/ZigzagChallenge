@@ -11,6 +11,11 @@
 		6891DFF1B6EE70ED5C10C2A3 /* Pods_shopListFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276856868BBF964347982AD9 /* Pods_shopListFilter.framework */; };
 		9C0C9228B69A5CC84D439F7B /* Pods_shopListFilterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1487693EBD5EC71F7A05F19D /* Pods_shopListFilterTests.framework */; };
 		DB000D3F2336A66A0091F9D9 /* UIViewController+Stroyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000D3E2336A66A0091F9D9 /* UIViewController+Stroyboard.swift */; };
+		DB1170822338B5410017130E /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170812338B5410017130E /* APIError.swift */; };
+		DB1170852338B81B0017130E /* ShopListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170842338B81B0017130E /* ShopListSection.swift */; };
+		DB1170872338B8380017130E /* ShopFilterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170862338B8380017130E /* ShopFilterSection.swift */; };
+		DB1170892338C4C70017130E /* ShopFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170882338C4C70017130E /* ShopFilterCell.swift */; };
+		DB11708C2338C7220017130E /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB11708B2338C7220017130E /* FilterType.swift */; };
 		DB607F5023369DB10003C768 /* ShopFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F4D23369DB10003C768 /* ShopFilterViewController.swift */; };
 		DB607F5123369DB10003C768 /* ShopFilterViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */; };
 		DB607F5623369E0C0003C768 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F5323369E0C0003C768 /* ShopListViewController.swift */; };
@@ -57,6 +62,12 @@
 		75C344AA29861A44B7A95744 /* Pods_shopListFilterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shopListFilterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		988FCA9D3C122202B06C4F31 /* Pods-shopListFilter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shopListFilter.debug.xcconfig"; path = "Target Support Files/Pods-shopListFilter/Pods-shopListFilter.debug.xcconfig"; sourceTree = "<group>"; };
 		DB000D3E2336A66A0091F9D9 /* UIViewController+Stroyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Stroyboard.swift"; sourceTree = "<group>"; };
+		DB1170812338B5410017130E /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		DB1170832338B7640017130E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		DB1170842338B81B0017130E /* ShopListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListSection.swift; sourceTree = "<group>"; };
+		DB1170862338B8380017130E /* ShopFilterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterSection.swift; sourceTree = "<group>"; };
+		DB1170882338C4C70017130E /* ShopFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterCell.swift; sourceTree = "<group>"; };
+		DB11708B2338C7220017130E /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
 		DB607F4D23369DB10003C768 /* ShopFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterViewController.swift; sourceTree = "<group>"; };
 		DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterViewReactor.swift; sourceTree = "<group>"; };
 		DB607F5323369E0C0003C768 /* ShopListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
@@ -148,8 +159,11 @@
 		DB000D3A2336A5710091F9D9 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				DB1170842338B81B0017130E /* ShopListSection.swift */,
+				DB1170862338B8380017130E /* ShopFilterSection.swift */,
 			);
-			path = Sections;
+			name = Sections;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		DB000D3B2336A5920091F9D9 /* Models */ = {
@@ -165,6 +179,7 @@
 		DB000D3C2336A5A10091F9D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DB1170882338C4C70017130E /* ShopFilterCell.swift */,
 				DBC3CCBF2336B11000B8557D /* ShopRankingCell.swift */,
 				DBC3CCC12336B15800B8557D /* ShopRankingCellReactor.swift */,
 			);
@@ -179,11 +194,28 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		DB11708A2338C6F40017130E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DB11708B2338C7220017130E /* FilterType.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DBAEFD222338AA1C00715C0F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DB1170832338B7640017130E /* NetworkService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		DBC3CCC92337954F00B8557D /* Enums */ = {
 			isa = PBXGroup;
 			children = (
 				DBC3CCCA2337959900B8557D /* Age.swift */,
 				DBC3CCCC2337987C00B8557D /* Style.swift */,
+				DB1170812338B5410017130E /* APIError.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -213,8 +245,10 @@
 		DBDD42E92336108A00A2608F /* shopListFilter */ = {
 			isa = PBXGroup;
 			children = (
+				DB11708A2338C6F40017130E /* Protocols */,
 				DB000D3D2336A5C90091F9D9 /* Extensions */,
 				DBC3CCC92337954F00B8557D /* Enums */,
+				DBAEFD222338AA1C00715C0F /* Service */,
 				DB000D3B2336A5920091F9D9 /* Models */,
 				DB000D3A2336A5710091F9D9 /* Sections */,
 				DB000D3C2336A5A10091F9D9 /* Views */,
@@ -474,12 +508,17 @@
 				DBC3CCC62337846B00B8557D /* Shop.swift in Sources */,
 				DBC3CCCD2337987C00B8557D /* Style.swift in Sources */,
 				DB607F5023369DB10003C768 /* ShopFilterViewController.swift in Sources */,
+				DB1170872338B8380017130E /* ShopFilterSection.swift in Sources */,
+				DB1170822338B5410017130E /* APIError.swift in Sources */,
 				DBC3CCC22336B15800B8557D /* ShopRankingCellReactor.swift in Sources */,
 				DB607F5123369DB10003C768 /* ShopFilterViewReactor.swift in Sources */,
 				DBC3CCC02336B11000B8557D /* ShopRankingCell.swift in Sources */,
 				DBC3CCCB2337959900B8557D /* Age.swift in Sources */,
 				DBDD42EB2336108A00A2608F /* AppDelegate.swift in Sources */,
 				DB607F5723369E0C0003C768 /* ShopListViewReactor.swift in Sources */,
+				DB1170892338C4C70017130E /* ShopFilterCell.swift in Sources */,
+				DB1170852338B81B0017130E /* ShopListSection.swift in Sources */,
+				DB11708C2338C7220017130E /* FilterType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

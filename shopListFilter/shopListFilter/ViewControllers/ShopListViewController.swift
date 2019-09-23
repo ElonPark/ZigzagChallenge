@@ -28,7 +28,7 @@ final class ShopListViewController: UIViewController, StoryboardView {
         
     }
 
-    func bind(reactor: ShopFilterViewReactor) {
+    func bind(reactor: ShopListViewReactor) {
         
     }
     

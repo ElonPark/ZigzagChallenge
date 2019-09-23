@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Age: Int {
+enum Age: Int, FilterType {
     case teenager = 0
     case earlyTwenties
     case midTwenties

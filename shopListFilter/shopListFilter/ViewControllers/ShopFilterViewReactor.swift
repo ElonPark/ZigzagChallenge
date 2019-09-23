@@ -51,6 +51,8 @@ final class ShopFilterViewReactor: Reactor {
             Log.verbose(indexPath)
             break
          }
+        /// FIXME: 수정 예정
+        return .just(.close)
     }
     
     func reduce(state: State, mutation: Mutation) -> State {

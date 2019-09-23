@@ -11,7 +11,7 @@ import Foundation
 import ReactorKit
 import RxSwift
 
-final class ShopRankingCellReactor: Reactor {
+final class ShopRankingCellReactor: Reactor, Equatable {
         
     enum Action {
         // actiom cases
@@ -21,7 +21,7 @@ final class ShopRankingCellReactor: Reactor {
         // mutation cases
     }
     
-    struct State {
+    struct State: Equatable {
         let shopRank: ShopRank
     }
     
