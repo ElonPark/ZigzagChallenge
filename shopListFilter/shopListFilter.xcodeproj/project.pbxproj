@@ -20,6 +20,8 @@
 		DB607F5123369DB10003C768 /* ShopFilterViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */; };
 		DB607F5623369E0C0003C768 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F5323369E0C0003C768 /* ShopListViewController.swift */; };
 		DB607F5723369E0C0003C768 /* ShopListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F5423369E0C0003C768 /* ShopListViewReactor.swift */; };
+		DB68C6E82339EADE00FA83C8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170832338B7640017130E /* NetworkService.swift */; };
+		DB68C6EB233A28E000FA83C8 /* ShopFilterCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68C6EA233A28E000FA83C8 /* ShopFilterCellReactor.swift */; };
 		DBC3CCC02336B11000B8557D /* ShopRankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCBF2336B11000B8557D /* ShopRankingCell.swift */; };
 		DBC3CCC22336B15800B8557D /* ShopRankingCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCC12336B15800B8557D /* ShopRankingCellReactor.swift */; };
 		DBC3CCC42336B54D00B8557D /* WeekRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC3CCC32336B54D00B8557D /* WeekRank.swift */; };
@@ -72,6 +74,7 @@
 		DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterViewReactor.swift; sourceTree = "<group>"; };
 		DB607F5323369E0C0003C768 /* ShopListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
 		DB607F5423369E0C0003C768 /* ShopListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewReactor.swift; sourceTree = "<group>"; };
+		DB68C6EA233A28E000FA83C8 /* ShopFilterCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterCellReactor.swift; sourceTree = "<group>"; };
 		DBC3CCBF2336B11000B8557D /* ShopRankingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopRankingCell.swift; sourceTree = "<group>"; };
 		DBC3CCC12336B15800B8557D /* ShopRankingCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopRankingCellReactor.swift; sourceTree = "<group>"; };
 		DBC3CCC32336B54D00B8557D /* WeekRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRank.swift; sourceTree = "<group>"; };
@@ -180,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				DB1170882338C4C70017130E /* ShopFilterCell.swift */,
+				DB68C6EA233A28E000FA83C8 /* ShopFilterCellReactor.swift */,
 				DBC3CCBF2336B11000B8557D /* ShopRankingCell.swift */,
 				DBC3CCC12336B15800B8557D /* ShopRankingCellReactor.swift */,
 			);
@@ -202,6 +206,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		DB68C6E9233A287600FA83C8 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				DB1170812338B5410017130E /* APIError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		DBAEFD222338AA1C00715C0F /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +227,6 @@
 			children = (
 				DBC3CCCA2337959900B8557D /* Age.swift */,
 				DBC3CCCC2337987C00B8557D /* Style.swift */,
-				DB1170812338B5410017130E /* APIError.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -245,6 +256,7 @@
 		DBDD42E92336108A00A2608F /* shopListFilter */ = {
 			isa = PBXGroup;
 			children = (
+				DB68C6E9233A287600FA83C8 /* Errors */,
 				DB11708A2338C6F40017130E /* Protocols */,
 				DB000D3D2336A5C90091F9D9 /* Extensions */,
 				DBC3CCC92337954F00B8557D /* Enums */,
@@ -507,6 +519,7 @@
 				DBC3CCC42336B54D00B8557D /* WeekRank.swift in Sources */,
 				DBC3CCC62337846B00B8557D /* Shop.swift in Sources */,
 				DBC3CCCD2337987C00B8557D /* Style.swift in Sources */,
+				DB68C6EB233A28E000FA83C8 /* ShopFilterCellReactor.swift in Sources */,
 				DB607F5023369DB10003C768 /* ShopFilterViewController.swift in Sources */,
 				DB1170872338B8380017130E /* ShopFilterSection.swift in Sources */,
 				DB1170822338B5410017130E /* APIError.swift in Sources */,
@@ -516,6 +529,7 @@
 				DBC3CCCB2337959900B8557D /* Age.swift in Sources */,
 				DBDD42EB2336108A00A2608F /* AppDelegate.swift in Sources */,
 				DB607F5723369E0C0003C768 /* ShopListViewReactor.swift in Sources */,
+				DB68C6E82339EADE00FA83C8 /* NetworkService.swift in Sources */,
 				DB1170892338C4C70017130E /* ShopFilterCell.swift in Sources */,
 				DB1170852338B81B0017130E /* ShopListSection.swift in Sources */,
 				DB11708C2338C7220017130E /* FilterType.swift in Sources */,

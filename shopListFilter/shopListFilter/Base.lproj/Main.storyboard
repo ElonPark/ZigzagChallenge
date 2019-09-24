@@ -86,7 +86,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstItem="ql5-9f-duZ" firstAttribute="top" secondItem="Fq9-fS-BX0" secondAttribute="top" id="429-cb-GWk"/>
                                                                         <constraint firstAttribute="trailing" secondItem="ql5-9f-duZ" secondAttribute="trailing" constant="3" id="a2p-hA-B9n"/>
@@ -104,7 +104,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstItem="x46-Be-LzX" firstAttribute="leading" secondItem="4sg-2b-7bK" secondAttribute="leading" constant="3" id="BCW-lf-Rfl"/>
                                                                         <constraint firstAttribute="trailing" secondItem="x46-Be-LzX" secondAttribute="trailing" constant="3" id="IKw-DX-4ak"/>

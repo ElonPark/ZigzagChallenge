@@ -11,7 +11,7 @@ import Foundation
 import ReactorKit
 import RxSwift
 
-final class ShopRankingCellReactor: Reactor, Equatable {
+final class ShopRankingCellReactor: Reactor {
         
     enum Action {
         // actiom cases
@@ -44,4 +44,11 @@ final class ShopRankingCellReactor: Reactor, Equatable {
         return newState
     }
     
+}
+
+extension ShopRankingCellReactor: Equatable {
+    static func == (lhs: ShopRankingCellReactor, rhs: ShopRankingCellReactor) -> Bool {
+          return lhs.currentState.shopRank.shop.name == rhs.currentState.shopRank.shop.name
+      }
+      
 }
