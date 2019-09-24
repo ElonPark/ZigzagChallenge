@@ -46,18 +46,30 @@ class InflectStringTestCase: XCTestCase {
         XCTAssertEqual(snake_empty, "", "빈 문자열 변환 실패")
     }
     
-    func testSpaceString() {
+    func testCharacter() {
         // given
+        let empty = ""
         let space = " "
-        let space2 = "\t"
+        let tap = "\t"
+        let lineFeed = "\n"
+        let carriageRetrun = "\r"
+        let newLine = "\r\n"
         
         // when
+        let snake_empty = snakeCase(by: empty)
         let snake_space = snakeCase(by: space)
-        let snake_space2 = snakeCase(by: space2)
+        let snake_tap = snakeCase(by: tap)
+        let snake_line_feed = snakeCase(by: lineFeed)
+        let snake_carriage_retrun = snakeCase(by: carriageRetrun)
+        let snake_new_line = snakeCase(by: newLine)
         
         // Then
-        XCTAssertEqual(snake_space, "", "공백 문자열 변환 실패")
-        XCTAssertEqual(snake_space2, "", "공백 문자열 변환 실패")
+        XCTAssertEqual(snake_empty, "", "빈 문자열 변환 실패")
+        XCTAssertEqual(snake_space, "", "공백 변환 실패")
+        XCTAssertEqual(snake_tap, "", "공백 변환 실패")
+        XCTAssertEqual(snake_line_feed, "", "라인 피드 변환 실패")
+        XCTAssertEqual(snake_carriage_retrun, "", "캐리지 리턴 변환 실패")
+        XCTAssertEqual(snake_new_line, "", "개행 변환 실패")
     }
     
     func testWord() {
@@ -87,14 +99,17 @@ class InflectStringTestCase: XCTestCase {
         // given
         let specialGuest = "SpecialGuest"
         let appleComputer = "AppleComputer"
+        let appleComputerGoogle = "AppleComputerGoogle"
         
         // when
         let snake_special_guest = snakeCase(by: specialGuest)
         let snak_apple_computer = snakeCase(by: appleComputer)
+        let snak_apple_computer_google = snakeCase(by: appleComputerGoogle)
         
         // Then
         XCTAssertEqual(snake_special_guest, "special_guest", "파스칼 케이스 변환 실패")
         XCTAssertEqual(snak_apple_computer, "apple_computer", "파스칼 케이스 변환 실패")
+        XCTAssertEqual(snak_apple_computer_google, "apple_computer_google", "파스칼 케이스 변환 실패")
     }
     
     
