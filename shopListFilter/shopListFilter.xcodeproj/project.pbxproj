@@ -162,8 +162,8 @@
 		DB000D3A2336A5710091F9D9 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				DB1170842338B81B0017130E /* ShopListSection.swift */,
 				DB1170862338B8380017130E /* ShopFilterSection.swift */,
+				DB1170842338B81B0017130E /* ShopListSection.swift */,
 			);
 			name = Sections;
 			path = Service;
