@@ -14,7 +14,7 @@ struct ShopListSection: Equatable {
     var items: [ShopRank]
 }
 
-extension ShopListSection {
+extension ShopListSection: SectionModelType {
     
     init(original: ShopListSection, items: [ShopRank]) {
         self = original

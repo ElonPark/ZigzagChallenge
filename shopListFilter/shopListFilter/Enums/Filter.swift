@@ -1,5 +1,5 @@
 //
-//  FilterType.swift
+//  Filter.swift
 //  shopListFilter
 //
 //  Created by elon on 25/09/2019.
@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol FilterType {
-    
+enum Filter: Equatable {
+    case age(Age)
+    case style(Style)
 }

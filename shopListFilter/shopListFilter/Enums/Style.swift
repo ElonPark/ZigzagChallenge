@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Style: String, FilterType {
+enum Style: String, CaseIterable, Equatable, FilterType {
     case feminine = "페미닌"
     case modernChic = "모던시크"
     case simpleBasic = "심플베이직"

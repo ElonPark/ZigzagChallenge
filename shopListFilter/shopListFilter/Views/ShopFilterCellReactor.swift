@@ -16,12 +16,12 @@ final class ShopFilterCellReactor: Reactor {
     typealias Action = NoAction
     
     struct State {
-        let filter: FilterType
+        let filter: Filter
     }
     
     let initialState: State
     
-    init(filter: FilterType) {
+    init(filter: Filter) {
         defer { _ = self.state } // state 스트림 생성
         initialState = State(filter: filter)
     }

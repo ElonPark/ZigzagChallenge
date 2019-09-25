@@ -14,15 +14,16 @@ import RxSwift
 final class ShopRankingCellReactor: Reactor {
         
     enum Action {
-        // actiom cases
+        case select(Bool)
     }
     
     enum Mutation {
-        // mutation cases
+        case setSelected(Bool)
     }
     
     struct State: Equatable {
         let shopRank: ShopRank
+        var isSelected: Bool = false
     }
     
     let initialState: State
@@ -33,17 +34,21 @@ final class ShopRankingCellReactor: Reactor {
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
-        // switch action {
-        // }
+         switch action {
+         case .select(let isSelected):
+            return .just(.setSelected(isSelected))
+         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var newState = state
-        // switch mutation {
-        // }
+         switch mutation {
+         case .setSelected(let isSelected):
+            newState.isSelected = isSelected
+         }
+        
         return newState
     }
-    
 }
 
 extension ShopRankingCellReactor: Equatable {

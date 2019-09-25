@@ -12,9 +12,16 @@ struct ShopRank: Equatable {
 
     let shop: Shop
     
+    // FIXME: 메인 도메인만 가져올 수 있도록 수정 필요함.
     var shopImageURL: URL? {
         guard let host = shop.url?.host else { return nil }
-        let urlString = "https://cf.shop.s.zigzag.kr/images/\(host).jpg"
+        let removeWWW = host.replacingOccurrences(of: "www.", with: "")
+        let removeCoKr = removeWWW.replacingOccurrences(of: ".co.kr", with: "")
+        let removeKr = removeCoKr.replacingOccurrences(of: ".kr", with: "")
+        let removeCom = removeKr.replacingOccurrences(of: ".com", with: "")
+        let removeCafe = removeCom.replacingOccurrences(of: ".cafe24", with: "")
+        
+        let urlString = "https://cf.shop.s.zigzag.kr/images/\(removeCafe).jpg"
         return URL(string: urlString)
     }
     
@@ -61,7 +68,9 @@ struct ShopRank: Equatable {
             .compactMap { Style(rawValue: $0 ) }
     }
     
-    mutating func calculationPoint(ages: [Age], styles: [Style]) {
+    func calculationPoint(ages: [Age], styles: [Style]) -> Int {
+        var point: Int = 0
+        
         for age in ages {
             guard self.ages.contains(age) else { continue }
             point += 1
@@ -71,5 +80,7 @@ struct ShopRank: Equatable {
             guard self.styles.contains(style) else { continue }
             point += 1
         }
+        
+        return point
     }
 }

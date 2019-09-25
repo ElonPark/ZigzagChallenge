@@ -13,7 +13,7 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-final class ShopRankingCell: UITableViewCell, ReactorKit.View {
+final class ShopRankingCell: UITableViewCell, ReactorKit.View, HasIdentifier {
     
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var shopImageView: UIImageView!
@@ -46,6 +46,7 @@ final class ShopRankingCell: UITableViewCell, ReactorKit.View {
         super.awakeFromNib()
         // Initialization code
         initUI()
+        setImageViewToRound()
         setAgeViewLayer()
         setStyleViewLayer()
     }
@@ -58,23 +59,28 @@ final class ShopRankingCell: UITableViewCell, ReactorKit.View {
         ageLabel.text = ""
         
         styleBackgroundView.backgroundColor = .clear
-        firstStyleView.backgroundColor = .clear
         firstStyleLabel.text = ""
-        secondStyleView.backgroundColor = .clear
         secondStyleLabel.text = ""
+    }
+    
+    private func setImageViewToRound() {
+        shopImageView.layer.masksToBounds = true
+        shopImageView.layer.borderColor = UIColor.lightGray.cgColor
+        shopImageView.layer.borderWidth = 0.3
+        shopImageView.layer.cornerRadius = shopImageView.bounds.size.height / 2
     }
     
     private func setAgeViewLayer() {
         ageView.layer.masksToBounds = true
         ageView.layer.borderColor = UIColor.lightGray.cgColor
-        ageView.layer.borderWidth = 0.5
+        ageView.layer.borderWidth = 0.8
         ageView.layer.cornerRadius = 5
     }
     
     private func setStyleViewLayer() {
         styleBackgroundView.layer.masksToBounds = true
         styleBackgroundView.layer.borderColor = UIColor.lightGray.cgColor
-        styleBackgroundView.layer.borderWidth = 0.5
+        styleBackgroundView.layer.borderWidth = 0.8
         styleBackgroundView.layer.cornerRadius = 5
     }
 
@@ -94,13 +100,13 @@ final class ShopRankingCell: UITableViewCell, ReactorKit.View {
                 self.shopImageView.kf.setImage(with: shopRank.shopImageURL)
                 self.nameLabel.text = shopRank.shop.name
                 self.ageLabel.text = shopRank.ageRangeText
-                self.setStyleView(by: shopRank.styles)
+                self.setStyleView(by: shopRank.styles.sorted(by: { $0.index < $1.index }))
         }
         .disposed(by: self.disposeBag)
     }
     
     private func setStyleView(by styles: [Style]) {
-        styleBackgroundView.isHidden = styles.count > 1
+        styleBackgroundView.isHidden = styles.count < 1
         firstStyle = ""
         secondStyle = ""
         

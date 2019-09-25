@@ -12,18 +12,31 @@ import ReactorKit
 import RxSwift
 import RxCocoa
 
-class ShopFilterCell: UICollectionViewCell, ReactorKit.View {
+class ShopFilterCell: UICollectionViewCell, ReactorKit.View, HasIdentifier {
     
     @IBOutlet weak var filterNameLabel: UILabel!
     
     var disposeBag: DisposeBag = DisposeBag()
+        
+    var filter: Filter?
+    
+    var color: UIColor? {
+        switch filter {
+        case .age:
+            return AppColor.cyan
+        case .style:
+            return AppColor.darkPink
+        case .none:
+            return nil
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         filterNameLabel.text = ""
         contentView.layer.masksToBounds = true
-        contentView.layer.cornerRadius = 5
+        contentView.layer.cornerRadius = 8
         contentView.layer.borderWidth = 1
     }
     
@@ -34,23 +47,19 @@ class ShopFilterCell: UICollectionViewCell, ReactorKit.View {
     
     func bind(reactor: ShopFilterCellReactor) {
         reactor.state.map { $0.filter }
+            .observeOn(MainScheduler.instance)
             .bind { [weak self] filter in
                 guard let self = self else { return }
+                self.filter = filter
+                self.filterNameLabel.textColor = self.color
+                self.contentView.layer.borderColor = self.color?.cgColor
+
                 switch filter {
-                case let age as Age:
-                    let color = UIColor(named: "Cyan")
+                case .age(let age):
                     self.filterNameLabel.text = age.title
-                    self.filterNameLabel.textColor = UIColor(named: "Cyan")
-                    self.contentView.layer.borderColor = color?.cgColor
                     
-                case let style as Style:
-                    let color = UIColor(named: "DarkPink")
+                case .style(let style):
                     self.filterNameLabel.text = style.rawValue
-                    self.filterNameLabel.textColor = color
-                    self.contentView.layer.borderColor = color?.cgColor
-                    
-                default:
-                    break
                 }
         }
         .disposed(by: disposeBag)

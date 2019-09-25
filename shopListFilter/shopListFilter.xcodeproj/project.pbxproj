@@ -11,11 +11,18 @@
 		6891DFF1B6EE70ED5C10C2A3 /* Pods_shopListFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276856868BBF964347982AD9 /* Pods_shopListFilter.framework */; };
 		9C0C9228B69A5CC84D439F7B /* Pods_shopListFilterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1487693EBD5EC71F7A05F19D /* Pods_shopListFilterTests.framework */; };
 		DB000D3F2336A66A0091F9D9 /* UIViewController+Stroyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB000D3E2336A66A0091F9D9 /* UIViewController+Stroyboard.swift */; };
+		DB0F4452233B140F00CADC92 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F4451233B140F00CADC92 /* NibLoadable.swift */; };
+		DB0F4454233B54C900CADC92 /* ShopListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F4453233B54C900CADC92 /* ShopListHeaderView.swift */; };
+		DB0F4456233B54D900CADC92 /* ShopListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB0F4455233B54D900CADC92 /* ShopListHeaderView.xib */; };
+		DB0F4458233B839600CADC92 /* ShopFilterHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F4457233B839600CADC92 /* ShopFilterHeaderReusableView.swift */; };
+		DB0F445A233B845300CADC92 /* HasIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F4459233B845300CADC92 /* HasIdentifier.swift */; };
+		DB0F445D233B85F400CADC92 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F445C233B85F400CADC92 /* AppColor.swift */; };
+		DB0F445F233B8D0A00CADC92 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F445E233B8D0A00CADC92 /* Filter.swift */; };
+		DB0F4461233B8E0000CADC92 /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F4460233B8E0000CADC92 /* FilterType.swift */; };
 		DB1170822338B5410017130E /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170812338B5410017130E /* APIError.swift */; };
 		DB1170852338B81B0017130E /* ShopListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170842338B81B0017130E /* ShopListSection.swift */; };
 		DB1170872338B8380017130E /* ShopFilterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170862338B8380017130E /* ShopFilterSection.swift */; };
 		DB1170892338C4C70017130E /* ShopFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1170882338C4C70017130E /* ShopFilterCell.swift */; };
-		DB11708C2338C7220017130E /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB11708B2338C7220017130E /* FilterType.swift */; };
 		DB607F5023369DB10003C768 /* ShopFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F4D23369DB10003C768 /* ShopFilterViewController.swift */; };
 		DB607F5123369DB10003C768 /* ShopFilterViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */; };
 		DB607F5623369E0C0003C768 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB607F5323369E0C0003C768 /* ShopListViewController.swift */; };
@@ -64,12 +71,19 @@
 		75C344AA29861A44B7A95744 /* Pods_shopListFilterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shopListFilterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		988FCA9D3C122202B06C4F31 /* Pods-shopListFilter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shopListFilter.debug.xcconfig"; path = "Target Support Files/Pods-shopListFilter/Pods-shopListFilter.debug.xcconfig"; sourceTree = "<group>"; };
 		DB000D3E2336A66A0091F9D9 /* UIViewController+Stroyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Stroyboard.swift"; sourceTree = "<group>"; };
+		DB0F4451233B140F00CADC92 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		DB0F4453233B54C900CADC92 /* ShopListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListHeaderView.swift; sourceTree = "<group>"; };
+		DB0F4455233B54D900CADC92 /* ShopListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopListHeaderView.xib; sourceTree = "<group>"; };
+		DB0F4457233B839600CADC92 /* ShopFilterHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterHeaderReusableView.swift; sourceTree = "<group>"; };
+		DB0F4459233B845300CADC92 /* HasIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasIdentifier.swift; sourceTree = "<group>"; };
+		DB0F445C233B85F400CADC92 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		DB0F445E233B8D0A00CADC92 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		DB0F4460233B8E0000CADC92 /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
 		DB1170812338B5410017130E /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		DB1170832338B7640017130E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		DB1170842338B81B0017130E /* ShopListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListSection.swift; sourceTree = "<group>"; };
 		DB1170862338B8380017130E /* ShopFilterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterSection.swift; sourceTree = "<group>"; };
 		DB1170882338C4C70017130E /* ShopFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterCell.swift; sourceTree = "<group>"; };
-		DB11708B2338C7220017130E /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
 		DB607F4D23369DB10003C768 /* ShopFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterViewController.swift; sourceTree = "<group>"; };
 		DB607F4E23369DB10003C768 /* ShopFilterViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopFilterViewReactor.swift; sourceTree = "<group>"; };
 		DB607F5323369E0C0003C768 /* ShopListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
@@ -184,8 +198,11 @@
 			children = (
 				DB1170882338C4C70017130E /* ShopFilterCell.swift */,
 				DB68C6EA233A28E000FA83C8 /* ShopFilterCellReactor.swift */,
+				DB0F4457233B839600CADC92 /* ShopFilterHeaderReusableView.swift */,
 				DBC3CCBF2336B11000B8557D /* ShopRankingCell.swift */,
 				DBC3CCC12336B15800B8557D /* ShopRankingCellReactor.swift */,
+				DB0F4453233B54C900CADC92 /* ShopListHeaderView.swift */,
+				DB0F4455233B54D900CADC92 /* ShopListHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,10 +215,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		DB0F445B233B85D900CADC92 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				DB0F445C233B85F400CADC92 /* AppColor.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		DB11708A2338C6F40017130E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				DB11708B2338C7220017130E /* FilterType.swift */,
+				DB0F4451233B140F00CADC92 /* NibLoadable.swift */,
+				DB0F4459233B845300CADC92 /* HasIdentifier.swift */,
+				DB0F4460233B8E0000CADC92 /* FilterType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -227,6 +254,7 @@
 			children = (
 				DBC3CCCA2337959900B8557D /* Age.swift */,
 				DBC3CCCC2337987C00B8557D /* Style.swift */,
+				DB0F445E233B8D0A00CADC92 /* Filter.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -265,6 +293,7 @@
 				DB000D3A2336A5710091F9D9 /* Sections */,
 				DB000D3C2336A5A10091F9D9 /* Views */,
 				DB000D392336A54C0091F9D9 /* ViewControllers */,
+				DB0F445B233B85D900CADC92 /* Commons */,
 				DBDD42EA2336108A00A2608F /* AppDelegate.swift */,
 				DBDD42EE2336108A00A2608F /* Main.storyboard */,
 				DBDD42F12336108D00A2608F /* Assets.xcassets */,
@@ -401,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBDD42F52336108D00A2608F /* LaunchScreen.storyboard in Resources */,
+				DB0F4456233B54D900CADC92 /* ShopListHeaderView.xib in Resources */,
 				DBDD42F22336108D00A2608F /* Assets.xcassets in Resources */,
 				DBDD42F02336108A00A2608F /* Main.storyboard in Resources */,
 			);
@@ -514,25 +544,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB607F5623369E0C0003C768 /* ShopListViewController.swift in Sources */,
+				DB0F445F233B8D0A00CADC92 /* Filter.swift in Sources */,
 				DBC3CCC823378E8F00B8557D /* ShopRank.swift in Sources */,
 				DB000D3F2336A66A0091F9D9 /* UIViewController+Stroyboard.swift in Sources */,
+				DB0F4454233B54C900CADC92 /* ShopListHeaderView.swift in Sources */,
 				DBC3CCC42336B54D00B8557D /* WeekRank.swift in Sources */,
 				DBC3CCC62337846B00B8557D /* Shop.swift in Sources */,
+				DB0F4452233B140F00CADC92 /* NibLoadable.swift in Sources */,
+				DB0F4458233B839600CADC92 /* ShopFilterHeaderReusableView.swift in Sources */,
 				DBC3CCCD2337987C00B8557D /* Style.swift in Sources */,
 				DB68C6EB233A28E000FA83C8 /* ShopFilterCellReactor.swift in Sources */,
 				DB607F5023369DB10003C768 /* ShopFilterViewController.swift in Sources */,
 				DB1170872338B8380017130E /* ShopFilterSection.swift in Sources */,
 				DB1170822338B5410017130E /* APIError.swift in Sources */,
 				DBC3CCC22336B15800B8557D /* ShopRankingCellReactor.swift in Sources */,
+				DB0F4461233B8E0000CADC92 /* FilterType.swift in Sources */,
 				DB607F5123369DB10003C768 /* ShopFilterViewReactor.swift in Sources */,
 				DBC3CCC02336B11000B8557D /* ShopRankingCell.swift in Sources */,
+				DB0F445D233B85F400CADC92 /* AppColor.swift in Sources */,
 				DBC3CCCB2337959900B8557D /* Age.swift in Sources */,
 				DBDD42EB2336108A00A2608F /* AppDelegate.swift in Sources */,
 				DB607F5723369E0C0003C768 /* ShopListViewReactor.swift in Sources */,
 				DB68C6E82339EADE00FA83C8 /* NetworkService.swift in Sources */,
 				DB1170892338C4C70017130E /* ShopFilterCell.swift in Sources */,
+				DB0F445A233B845300CADC92 /* HasIdentifier.swift in Sources */,
 				DB1170852338B81B0017130E /* ShopListSection.swift in Sources */,
-				DB11708C2338C7220017130E /* FilterType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,7 +25,7 @@ extension UIViewController {
 }
 
 extension UIStoryboard {
-    static func shopFilterVC() -> ShopListViewController? {
+    static func shopFilterVC() -> ShopFilterViewController? {
         return UIViewController.instantiate(by: .main)
     }
 }

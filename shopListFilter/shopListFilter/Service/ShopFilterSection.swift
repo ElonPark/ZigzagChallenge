@@ -8,33 +8,20 @@
 
 import RxDataSources
 
-enum ShopFilterSection: Equatable {
-    case ageFilter([ShopFilterSectionItem])
-    case styleFilter([ShopFilterSectionItem])
+struct ShopFilterSection: Equatable {
+    var header: String
+    var items: [ShopFilterSectionItem]
 }
 
-extension ShopFilterSection {
-    
-    var items: [ShopFilterSectionItem] {
-        switch self {
-        case .ageFilter(let items):
-            return items
-        case .styleFilter(let items):
-            return items
-        }
-    }
+extension ShopFilterSection: SectionModelType {
     
     init(original: ShopFilterSection, items: [ShopFilterSectionItem]) {
-        switch original {
-        case .ageFilter(let items):
-            self = .ageFilter(items)
-        case .styleFilter(let items):
-            self = .styleFilter(items)
-        }
+        self = original
+        self.items = items
     }
 }
 
-enum ShopFilterSectionItem: Equatable {
-    case shop(ShopRankingCellReactor)
-    case style(ShopRankingCellReactor)
+struct ShopFilterSectionItem: Equatable {
+    var isSelected: Bool
+    var filter: Filter
 }
