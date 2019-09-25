@@ -13,16 +13,40 @@ import RxSwift
 
 final class ShopFilterCellReactor: Reactor {
     
-    typealias Action = NoAction
+    enum Action {
+        case select(Bool)
+    }
+    
+    enum Mutation {
+        case setIsSelected(Bool)
+    }
     
     struct State {
+        var isSelected: Bool
         let filter: Filter
     }
     
     let initialState: State
     
-    init(filter: Filter) {
+    init(filter: Filter, isSelected: Bool) {
         defer { _ = self.state } // state 스트림 생성
-        initialState = State(filter: filter)
+        initialState = State(isSelected: isSelected, filter: filter)
+    }
+    
+    func mutate(action: Action) -> Observable<Mutation> {
+           switch action {
+           case .select(let isSelected):
+            return .just(.setIsSelected(isSelected))
+        }
+    }
+    
+    func reduce(state: State, mutation: Mutation) -> State {
+        var newState = state
+        switch mutation {
+        case .setIsSelected(let isSelected):
+            newState.isSelected = isSelected
+        }
+        
+        return newState
     }
 }

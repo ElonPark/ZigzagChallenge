@@ -32,6 +32,7 @@
                                 <constraint firstAttribute="height" constant="35" id="irp-6H-LdV"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                            <color key="tintColor" name="Cyan"/>
                             <state key="normal" title="필터">
                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>

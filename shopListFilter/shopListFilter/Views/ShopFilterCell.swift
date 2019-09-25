@@ -30,7 +30,7 @@ class ShopFilterCell: UICollectionViewCell, ReactorKit.View, HasIdentifier {
             return nil
         }
     }
-    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -46,14 +46,24 @@ class ShopFilterCell: UICollectionViewCell, ReactorKit.View, HasIdentifier {
     }
     
     func bind(reactor: ShopFilterCellReactor) {
+        reactor.state.map { $0.isSelected }
+            .distinctUntilChanged()
+            .observeOn(MainScheduler.asyncInstance)
+            .bind { [weak self] isSelected in
+                guard let self = self else { return }
+                self.isSelected = isSelected
+                self.filterNameLabel.textColor = isSelected ? .white : self.color
+                self.contentView.backgroundColor = isSelected ? self.color : .white
+        }
+        .disposed(by: disposeBag)
+        
         reactor.state.map { $0.filter }
+            .distinctUntilChanged()
             .observeOn(MainScheduler.instance)
             .bind { [weak self] filter in
                 guard let self = self else { return }
                 self.filter = filter
-                self.filterNameLabel.textColor = self.color
                 self.contentView.layer.borderColor = self.color?.cgColor
-
                 switch filter {
                 case .age(let age):
                     self.filterNameLabel.text = age.title

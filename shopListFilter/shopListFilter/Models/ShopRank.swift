@@ -25,23 +25,27 @@ struct ShopRank: Equatable {
         return URL(string: urlString)
     }
     
-    private(set) var ages: [Age] = []
-    private(set) var styles: [Style] = []
+    private(set) var ages: Set<Age> = Set()
+    private(set) var styles: Set<Style> = Set()
     
     var ageRangeText: String {
-        var rangeTitles: [String] = []
         var titleDic: [String: Age] = [:]
         for age in ages {
             if titleDic[age.rangeTitle] == nil {
-                rangeTitles.append(age.rangeTitle)
                 titleDic[age.rangeTitle] = age
             }
         }
         
-        return rangeTitles.joined(separator: " ")
+        return titleDic.values.sorted { $0.rawValue < $1.rawValue }
+            .map { $0.rangeTitle }
+            .joined(separator: " ")
     }
     
-    var point: Int = 0
+    var agePoint: Int = 0
+    var stylePoint: Int = 0
+    var point: Int {
+        return agePoint + stylePoint
+    }
     var rank: Int = 0
     
     var rankValue: Int {
@@ -55,32 +59,25 @@ struct ShopRank: Equatable {
     }
     
     private mutating func setAges(by ageRange: [Int]) {
-        ages = []
+        var ages: Set<Age> = Set()
         for (index, ageValue) in ageRange.enumerated() {
             guard ageValue == 1 else { continue }
             guard let age = Age(rawValue: index) else { continue }
-            ages.append(age)
+            ages.insert(age)
         }
+        
+        self.ages = ages
     }
     
     private mutating func setStyles(by style: String) {
-        styles = shop.style.components(separatedBy: ",")
+        let styleArray = shop.style.components(separatedBy: ",")
             .compactMap { Style(rawValue: $0 ) }
+        styles = Set(styleArray)
     }
     
-    func calculationPoint(ages: [Age], styles: [Style]) -> Int {
-        var point: Int = 0
-        
-        for age in ages {
-            guard self.ages.contains(age) else { continue }
-            point += 1
-        }
-        
-        for style in styles {
-            guard self.styles.contains(style) else { continue }
-            point += 1
-        }
-        
-        return point
+    func calculationPoint(by filterItem: SelectedFilter) -> (agePoint: Int, stylePoint: Int) {
+        let agePoint = ages.intersection(filterItem.ages).count
+        let stylePoint = styles.intersection(filterItem.styles).count
+        return (agePoint, stylePoint)
     }
 }

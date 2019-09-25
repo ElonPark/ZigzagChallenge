@@ -27,6 +27,10 @@ class ShopListHeaderView: UIView, NibLoadable {
             
             filterValueBaseView.isHidden = filterValue.isEmpty
             filterValueBaseViewHeightConstraint.constant = filterValue.isEmpty ? 0 : 25
+            
+            filterButton.isSelected = !filterValue.isEmpty
+            filterButton.backgroundColor = filterValue.isEmpty ? .white : AppColor.cyan
+            filterButton.layer.borderColor = filterValue.isEmpty ? UIColor.lightGray.cgColor : UIColor.white.cgColor
         }
     }
     
@@ -36,6 +40,12 @@ class ShopListHeaderView: UIView, NibLoadable {
         super.awakeFromNib()
         
         weekTitleLabel.text = ""
+        setFilterButtonUI()
+    }
+    
+    private func setFilterButtonUI() {
+        filterButton.setTitleColor(.white, for: .selected)
+        filterButton.setTitleColor(.lightGray, for: .normal)
         
         filterButton.layer.masksToBounds = true
         filterButton.layer.cornerRadius = 5

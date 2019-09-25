@@ -26,16 +26,16 @@ final class ShopFilterViewController: UIViewController, StoryboardView {
     
     // MARK: Properties
     
-    
     typealias DataSource = RxCollectionViewSectionedReloadDataSource<ShopFilterSection>
-    private let dataSource = DataSource(configureCell: { (dataSource, collectionView, indexPath, filter) -> UICollectionViewCell in
+    private let dataSource = DataSource(configureCell: { (dataSource, collectionView, indexPath, item) -> UICollectionViewCell in
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: ShopFilterCell.identifier,
             for: indexPath
-        ) as? ShopFilterCell
+            ) as? ShopFilterCell
         
-        cell?.reactor = ShopFilterCellReactor(filter: filter)
-        
+        cell?.reactor = ShopFilterCellReactor(filter: item.filter,
+                                              isSelected: item.isSelected)
+                
         return cell ?? UICollectionViewCell()
         
     }, configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
@@ -58,7 +58,8 @@ final class ShopFilterViewController: UIViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        filterCollectionView.contentInset = UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0)
+        filterCollectionView.contentInset = UIEdgeInsets(top: 3, left: 0,
+                                                         bottom: 3, right: 0)
         
         setResetButtonUI()
         bindCloseButtonTap()
@@ -125,8 +126,8 @@ extension ShopFilterViewController: UICollectionViewDelegateFlowLayout {
         let sideInset: CGFloat = 15 * 2
         let width = UIScreen.main.bounds.size.width
 
-        let type = dataSource[indexPath.section].items[indexPath.item]
-        switch type {
+        let filter = dataSource[indexPath.section].items[indexPath.item].filter
+        switch filter {
         case .age:
             let lineItemCount: CGFloat = 4
             let cellWidth = (width - sideInset - (gap * (lineItemCount - 1))) / lineItemCount

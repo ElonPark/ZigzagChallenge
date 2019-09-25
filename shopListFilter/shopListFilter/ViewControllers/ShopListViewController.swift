@@ -36,7 +36,7 @@ final class ShopListViewController: UIViewController, StoryboardView {
     
     let isFiltered: BehaviorRelay<Bool> = BehaviorRelay(value: false)
     let filterButtonTap: PublishRelay<Void> = PublishRelay()
-    let selectedFilters: PublishRelay<(age: [Age], style: [Style])> = PublishRelay()
+    let selectedFilter: BehaviorRelay<SelectedFilter?> = BehaviorRelay(value: nil)
     
     deinit {
         Log.verbose(type(of: self))
@@ -46,14 +46,18 @@ final class ShopListViewController: UIViewController, StoryboardView {
         super.viewDidLoad()
         
         filterButtonTap
-            .observeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.asyncInstance)
             .bind { [weak self] in
                 guard let self = self else { return }
                 guard let filterVC = UIStoryboard.shopFilterVC() else { return }
+                let selectedFilter = self.selectedFilter.value ?? SelectedFilter()
                 filterVC.modalPresentationStyle = .overFullScreen
-                filterVC.reactor = ShopFilterViewReactor()
-                filterVC.reactor?.state.map { $0.selectedFilters }
-                    .bind(to: self.selectedFilters)
+                filterVC.reactor = ShopFilterViewReactor(selectedFilter: selectedFilter)
+                filterVC.reactor?.state
+                    .filter { $0.isSelectComplete }
+                    .map { $0.selectedFilter }
+                    .distinctUntilChanged()
+                    .bind(to: self.selectedFilter)
                     .disposed(by: filterVC.disposeBag)
                 
                 self.present(filterVC, animated: true)
@@ -69,7 +73,9 @@ final class ShopListViewController: UIViewController, StoryboardView {
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
-        selectedFilters
+        selectedFilter
+            .compactMap { $0 }
+            .distinctUntilChanged()
             .map(Reactor.Action.selectFilter)
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)

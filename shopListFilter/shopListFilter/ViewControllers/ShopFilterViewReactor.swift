@@ -23,47 +23,84 @@ final class ShopFilterViewReactor: Reactor {
     enum Mutation {
         case reset
         case setLoadFilter([ShopFilterSection])
-        case setFilter(Filter)
-        case setSelectedFilters((age: [Age], style: [Style]))
+        case setFilter(IndexPath)
+        case setSelectedFilter(SelectedFilter)
+        case setIsSelectComplete(Bool)
     }
     
     struct State {
-        var sections: [ShopFilterSection] = []
+        var isSelectComplete: Bool = false
+        var selectedFilter: SelectedFilter
         var selectedAges: Set<Age> = Set()
         var selectedStyles: Set<Style> = Set()
-        var selectedFilters = (age: [Age](), style: [Style]())
+        var sections: [ShopFilterSection] = []
     }
     
     let initialState: State
     
-    init() {
-        initialState = State()
+    init(selectedFilter: SelectedFilter) {
+        initialState = State(selectedFilter: selectedFilter,
+                             selectedAges: selectedFilter.ages,
+                             selectedStyles: selectedFilter.styles)
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
          switch action {
          case .reset:
-            return .just(.setLoadFilter(currentState.sections))
+            return .just(.reset)
             
          case .loadFilter:
-            let ageItems = Age.allCases.map { Filter.age($0) }
-            let ageSection = ShopFilterSection(header: "연령대", items: ageItems)
+            let selectedAges = currentState.selectedFilter.ages
+            let ageItems = ageSectionItems(selectedAges)
+            let ageSection = ShopFilterSection(header: "연령대",
+                                               items: ageItems)
             
-            let styleItems = Style.allCases.map { Filter.style($0) }
-            let styleSection = ShopFilterSection(header: "스타일", items: styleItems)
+            let selectedStyles = currentState.selectedFilter.styles
+            let styleItems = styleSectionItems(selectedStyles)
+            let styleSection = ShopFilterSection(header: "스타일",
+                                                 items: styleItems)
             
             return .just(.setLoadFilter([ageSection, styleSection]))
             
          case .selectFilter(let indexPath):
-            let filter = currentState.sections[indexPath.section].items[indexPath.item]
-            return .just(.setFilter(filter))
+            return .just(.setFilter(indexPath))
             
          case .complete:
-            let ages = Array(currentState.selectedAges)
-            let styles = Array(currentState.selectedStyles)
+            let ages = currentState.selectedAges
+            let styles = currentState.selectedStyles
+            let item = SelectedFilter(ages: ages, styles: styles)
             
-            return .just(.setSelectedFilters((ages, styles)))
+            let mutations: [Observable<Mutation>] = [
+                .just(.setSelectedFilter(item)),
+                .just(.setIsSelectComplete(true))
+            ]
+            
+            return .concat(mutations)
         }
+    }
+    
+    private func ageSectionItems(_ selectedAges: Set<Age>) -> [ShopFilterSectionItem] {
+        var ageItems: [ShopFilterSectionItem] = []
+        for age in Age.allCases {
+            let isSelected = selectedAges.contains(age)
+            let sectionItem = ShopFilterSectionItem(isSelected: isSelected,
+                                                    filter: .age(age))
+            ageItems.append(sectionItem)
+        }
+        
+        return ageItems
+    }
+    
+    private func styleSectionItems(_ selectedStyles: Set<Style>) -> [ShopFilterSectionItem] {
+        var styleItems: [ShopFilterSectionItem] = []
+        for style in Style.allCases {
+            let isSelected = selectedStyles.contains(style)
+            let sectionItem = ShopFilterSectionItem(isSelected: isSelected,
+                                                    filter: .style(style))
+            styleItems.append(sectionItem)
+        }
+        
+        return styleItems
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
@@ -75,26 +112,38 @@ final class ShopFilterViewReactor: Reactor {
         case .reset:
             newState.selectedAges = Set()
             newState.selectedStyles = Set()
+            newState.sections = newState.sections.map { section in
+                var newSection = section
+                newSection.items = section.items.map { item in
+                    var newItem = item
+                    newItem.isSelected = false
+                    return newItem
+                }
+                return newSection
+            }
             
-        case .setFilter(let filterType):
-            newState = updateFilter(with: newState, filter: filterType)
+        case .setFilter(let indexPath):
+            var section = newState.sections[indexPath.section]
+            var item = section.items[indexPath.item]
+            let filter = item.filter
+            switch filter {
+            case .age(let age):
+                newState.selectedAges = updatedFilterSet(by: newState.selectedAges,
+                                                         filter: age)
+            case .style(let style):
+                newState.selectedStyles = updatedFilterSet(by: newState.selectedStyles,
+                                                           filter: style)
+            }
             
-        case .setSelectedFilters(let filters):
-            newState.selectedFilters = filters
-        }
-        
-        return newState
-    }
-    
-    private func updateFilter(with state: State, filter: Filter) -> State {
-        var newState = state
-        switch filter {
-        case .age(let age):
-            newState.selectedAges = updatedFilterSet(by: newState.selectedAges,
-                                                     filter: age)
-        case .style(let style):
-            newState.selectedStyles = updatedFilterSet(by: newState.selectedStyles,
-                                                       filter: style)
+            item.isSelected.toggle()
+            section.items[indexPath.item] = item
+            newState.sections[indexPath.section] = section
+            
+        case .setSelectedFilter(let filter):
+            newState.selectedFilter = filter
+            
+        case .setIsSelectComplete(let isComplete):
+            newState.isSelectComplete = isComplete
         }
         
         return newState
@@ -110,5 +159,4 @@ final class ShopFilterViewReactor: Reactor {
         
         return newFilterSet
     }
-    
 }

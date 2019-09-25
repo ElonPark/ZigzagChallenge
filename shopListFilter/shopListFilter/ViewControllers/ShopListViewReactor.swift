@@ -15,7 +15,7 @@ final class ShopListViewReactor: Reactor {
     
     enum Action {
         case loadData
-        case selectFilter((age: [Age], style: [Style]))
+        case selectFilter(SelectedFilter)
     }
     
     enum Mutation {
@@ -28,7 +28,7 @@ final class ShopListViewReactor: Reactor {
     struct State {
         var isLoading: Bool = false
         var isFiltered: Bool = false
-        var selectedFilters = (age: [Age](), style: [Style]())
+        var selectedFilter: SelectedFilter = SelectedFilter()
         var shopListSection: ShopListSection?
         var sections = [ShopListSection]()
     }
@@ -66,22 +66,43 @@ final class ShopListViewReactor: Reactor {
             
             return .concat(startLoading, data, endLoading)
             
-        case .selectFilter(let ages, let styles):
+        case .selectFilter(let filterItem):
+            defer {
+                Log.debug(filterItem)
+            }
             guard let section = currentState.shopListSection else {
                 return .just(.setFilter(false))
             }
             
-            if ages.isEmpty && styles.isEmpty {
-                return .concat(.just(.updateShopRanking(section)), .just(.setFilter(false)))
+            if filterItem.ages.isEmpty && filterItem.styles.isEmpty {
+                let mutations: [Observable<Mutation>] = [
+                    .just(.updateShopRanking(section)),
+                    .just(.setFilter(false))
+                ]
+                return .concat(mutations)
             }
             
             var newSection = section
-            newSection.filterValue = filterValue(ages: ages, styles: styles)
+            newSection.filterValue = filterValue(by: filterItem)
             newSection.items = section.items.compactMap { rank -> ShopRank? in
-                let point = rank.calculationPoint(ages: ages, styles: styles)
-                guard point > 1 else { return nil }
+                let (agePoint, stylePoint) = rank.calculationPoint(by: filterItem)
                 var newRank = rank
-                newRank.point = point
+                newRank.agePoint = agePoint
+                newRank.stylePoint = stylePoint
+                
+                guard newRank.point > 0 else { return nil }
+                if !filterItem.ages.isEmpty && agePoint < 1 {
+                    return nil
+                }
+                if !filterItem.styles.isEmpty && stylePoint < 1 {
+                    return nil
+                }
+                if !filterItem.ages.isEmpty && !filterItem.styles.isEmpty {
+                    if agePoint < 1 || stylePoint < 1 {
+                        return nil
+                    }
+                }
+                
                 return newRank
             }
             .sorted { $0.rankValue < $1.rankValue }
@@ -93,7 +114,8 @@ final class ShopListViewReactor: Reactor {
                 return newItem
             }
             
-            return .concat(.just(.updateShopRanking(newSection)), .just(.setFilter(true)))
+            return .concat(.just(.updateShopRanking(newSection)),
+                           .just(.setFilter(true)))
         }
     }
     
@@ -117,12 +139,14 @@ final class ShopListViewReactor: Reactor {
         return newState
     }
     
-    private func filterValue(ages: [Age], styles: [Style]) -> String {
-        let filterAgesValue = ages.sorted { $0.rawValue < $1.rawValue }
+    private func filterValue(by filterItem: SelectedFilter) -> String {
+        let filterAgesValue = Array(filterItem.ages)
+            .sorted { $0.rawValue < $1.rawValue }
             .map { $0.title }
             .joined(separator: ", ")
         
-        let filterStylesValue = styles.sorted { $0.index < $1.index }
+        let filterStylesValue = Array(filterItem.styles)
+            .sorted { $0.index < $1.index }
             .map { $0.rawValue }
             .joined(separator: ", ")
         
@@ -134,7 +158,7 @@ final class ShopListViewReactor: Reactor {
         } else {
             filterValue = "\(filterAgesValue) / \(filterStylesValue)"
         }
-        Log.debug(filterValue)
+        
         return filterValue
     }
 }
