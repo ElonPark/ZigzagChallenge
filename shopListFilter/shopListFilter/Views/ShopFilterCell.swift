@@ -62,7 +62,7 @@ class ShopFilterCell: UICollectionViewCell, HasIdentifier {
         // Initialization code
         filterNameLabel.text = ""
         contentView.layer.masksToBounds = true
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 12
         contentView.layer.borderWidth = 1
     }
     

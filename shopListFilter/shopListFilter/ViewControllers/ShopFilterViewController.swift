@@ -123,7 +123,7 @@ extension ShopFilterViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let gap: CGFloat = 10
+        let gap: CGFloat = 8
         let sideInset: CGFloat = 15 * 2
         let width = UIScreen.main.bounds.size.width
 
@@ -133,13 +133,13 @@ extension ShopFilterViewController: UICollectionViewDelegateFlowLayout {
             let lineItemCount: CGFloat = 4
             let cellWidth = (width - sideInset - (gap * (lineItemCount - 1))) / lineItemCount
 
-            return CGSize(width: cellWidth, height: 35)
+            return CGSize(width: cellWidth, height: 32)
 
         case .style:
             let lineItemCount: CGFloat = 3
             let cellWidth = (width - sideInset - (gap * (lineItemCount - 1))) / lineItemCount
             
-            return CGSize(width: cellWidth, height: 35)
+            return CGSize(width: cellWidth, height: 32)
         }
     }
 }

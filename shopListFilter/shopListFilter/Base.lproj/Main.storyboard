@@ -243,7 +243,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Do-PM-hm6">
                                 <rect key="frame" x="0.0" y="50" width="320" height="468"/>
                                 <color key="backgroundColor" red="0.94464218619999996" green="0.956749022" blue="0.96912759540000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lan-f9-fIM">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="Lan-f9-fIM">
                                     <size key="itemSize" width="60" height="70"/>
                                     <size key="headerReferenceSize" width="50" height="30"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -258,17 +258,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30대 초반" textAlignment="center" lineBreakMode="wordWrap" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-hI-9s3">
-                                                    <rect key="frame" x="8" y="3" width="64" height="33"/>
+                                                    <rect key="frame" x="3" y="0.0" width="74" height="39"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8NB-hI-9s3" firstAttribute="leading" secondItem="FoD-jP-lgq" secondAttribute="leading" constant="8" id="2Bv-9r-5LT"/>
-                                                <constraint firstItem="8NB-hI-9s3" firstAttribute="top" secondItem="FoD-jP-lgq" secondAttribute="top" constant="3" id="3AQ-2L-EIA"/>
-                                                <constraint firstAttribute="bottom" secondItem="8NB-hI-9s3" secondAttribute="bottom" constant="3" id="Pjj-QK-ira"/>
-                                                <constraint firstAttribute="trailing" secondItem="8NB-hI-9s3" secondAttribute="trailing" constant="8" id="qKV-ag-NLW"/>
+                                                <constraint firstItem="8NB-hI-9s3" firstAttribute="leading" secondItem="FoD-jP-lgq" secondAttribute="leading" constant="3" id="2Bv-9r-5LT"/>
+                                                <constraint firstItem="8NB-hI-9s3" firstAttribute="top" secondItem="FoD-jP-lgq" secondAttribute="top" id="3AQ-2L-EIA"/>
+                                                <constraint firstAttribute="bottom" secondItem="8NB-hI-9s3" secondAttribute="bottom" id="Pjj-QK-ira"/>
+                                                <constraint firstAttribute="trailing" secondItem="8NB-hI-9s3" secondAttribute="trailing" constant="3" id="qKV-ag-NLW"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="80" height="39"/>
