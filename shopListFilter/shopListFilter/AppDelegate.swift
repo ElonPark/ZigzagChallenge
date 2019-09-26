@@ -9,7 +9,6 @@
 import UIKit
 
 import EPLogger
-import Then
 
 public typealias Log = EPLogger.Log
 

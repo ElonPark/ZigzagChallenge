@@ -14,20 +14,15 @@ target 'shopListFilter' do
   pod 'ReactorKit'
 
   # UI
-  pod 'SnapKit'
-  pod 'ReusableKit'
-  pod 'ReusableKit/RxSwift'
   pod 'NVActivityIndicatorView'
   
   # Rx
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
-  pod 'RxOptional'
   pod 'RxDataSources', '~> 4.0'
 
   # ETC
   pod 'EPLogger'
-  pod 'Then'
   pod 'ObjectMapper', '~> 3.4'
   pod 'Kingfisher', '~> 5.0'
 
