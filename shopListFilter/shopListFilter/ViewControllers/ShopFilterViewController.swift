@@ -102,20 +102,25 @@ final class ShopFilterViewController: UIViewController, StoryboardView {
             .disposed(by: self.disposeBag)
         
         completeButton.rx.tap
-            .do(afterNext: { [weak self] in
-                guard let self = self else { return }
-                self.dismiss(animated: true)
-            })
             .map { Reactor.Action.complete }
             .bind(to: reactor.action)
             .disposed(by: self.disposeBag)
         
         // Output
-     
+        
         reactor.state.map { $0.sections }
             .distinctUntilChanged()
             .bind(to: filterCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
+        
+        reactor.state.map { $0.isSelectComplete }
+            .filter { $0 }
+            .observeOn(MainScheduler.asyncInstance)
+            .bind { [weak self] _ in
+                guard let self = self else { return }
+                self.dismiss(animated: true)
+        }
+        .disposed(by: self.disposeBag)
     }
 }
 

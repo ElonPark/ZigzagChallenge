@@ -73,8 +73,8 @@ class AlterDateFormatTestCase {
         let am4WithFomart = dateFormatter.alterDateFormat(time: am4.time, after: am4.delay)
         
         // Then
-        assert(am1WithFomart == "00:10:40","AM with \(am1.delay) second after is fail \(am1WithFomart) != 00:10:40")
-        assert(am2WithFomart == "12:00:00",  "AM with \(am2.delay) second after is fail \(am2WithFomart) != 12:00:00")
+        assert(am1WithFomart == "00:10:40", "AM with \(am1.delay) second after is fail \(am1WithFomart) != 00:10:40")
+        assert(am2WithFomart == "12:00:00", "AM with \(am2.delay) second after is fail \(am2WithFomart) != 12:00:00")
         assert(am3WithFomart == "09:50:35", "AM with \(am3.delay) second after is fail \(am3WithFomart) != 09:50:35")
         assert(am4WithFomart == "08:57:23", "AM with \(am4.delay) second after is fail \(am4WithFomart) != 08:57:23")
     }

@@ -78,16 +78,16 @@
                                                             <rect key="frame" x="55.5" y="0.0" width="82" height="16"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fq9-fS-BX0">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="49.5" height="16"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="심플베이직" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ql5-9f-duZ">
-                                                                            <rect key="frame" x="3" y="0.0" width="44" height="16"/>
+                                                                            <rect key="frame" x="3" y="0.0" width="43.5" height="16"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstItem="ql5-9f-duZ" firstAttribute="top" secondItem="Fq9-fS-BX0" secondAttribute="top" id="429-cb-GWk"/>
                                                                         <constraint firstAttribute="trailing" secondItem="ql5-9f-duZ" secondAttribute="trailing" constant="3" id="a2p-hA-B9n"/>
@@ -96,16 +96,16 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4sg-2b-7bK">
-                                                                    <rect key="frame" x="50" y="0.0" width="32" height="16"/>
+                                                                    <rect key="frame" x="49.5" y="0.0" width="32.5" height="16"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="러블리" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x46-Be-LzX">
-                                                                            <rect key="frame" x="3" y="0.0" width="26" height="16"/>
+                                                                            <rect key="frame" x="3" y="0.0" width="26.5" height="16"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstItem="x46-Be-LzX" firstAttribute="leading" secondItem="4sg-2b-7bK" secondAttribute="leading" constant="3" id="BCW-lf-Rfl"/>
                                                                         <constraint firstAttribute="trailing" secondItem="x46-Be-LzX" secondAttribute="trailing" constant="3" id="IKw-DX-4ak"/>
