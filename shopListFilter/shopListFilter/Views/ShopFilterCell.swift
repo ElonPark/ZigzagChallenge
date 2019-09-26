@@ -8,17 +8,27 @@
 
 import UIKit
 
-import ReactorKit
-import RxSwift
-import RxCocoa
-
-class ShopFilterCell: UICollectionViewCell, ReactorKit.View, HasIdentifier {
+class ShopFilterCell: UICollectionViewCell, HasIdentifier {
     
     @IBOutlet weak var filterNameLabel: UILabel!
     
-    var disposeBag: DisposeBag = DisposeBag()
-        
-    var filter: Filter?
+    var filter: Filter? {
+        didSet {
+            switch filter {
+            case .age(let age):
+                filterNameLabel.text = age.title
+                
+            case .style(let style):
+                filterNameLabel.text = style.rawValue
+                
+            case .none:
+                break
+            }
+
+            setSelected(isSelected)
+            contentView.layer.borderColor = color?.cgColor
+        }
+    }
     
     var color: UIColor? {
         switch filter {
@@ -31,6 +41,22 @@ class ShopFilterCell: UICollectionViewCell, ReactorKit.View, HasIdentifier {
         }
     }
    
+    override var isSelected: Bool {
+        didSet {
+            setSelected(isSelected)
+        }
+    }
+    
+    func setSelected(_ isSelected: Bool) {
+        if isSelected {
+            filterNameLabel.textColor = .white
+            contentView.backgroundColor = color
+        } else {
+            filterNameLabel.textColor = color
+            contentView.backgroundColor = .white
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -42,36 +68,5 @@ class ShopFilterCell: UICollectionViewCell, ReactorKit.View, HasIdentifier {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        disposeBag = DisposeBag()
-    }
-    
-    func bind(reactor: ShopFilterCellReactor) {
-        reactor.state.map { $0.isSelected }
-            .distinctUntilChanged()
-            .observeOn(MainScheduler.asyncInstance)
-            .bind { [weak self] isSelected in
-                guard let self = self else { return }
-                self.isSelected = isSelected
-                self.filterNameLabel.textColor = isSelected ? .white : self.color
-                self.contentView.backgroundColor = isSelected ? self.color : .white
-        }
-        .disposed(by: disposeBag)
-        
-        reactor.state.map { $0.filter }
-            .distinctUntilChanged()
-            .observeOn(MainScheduler.instance)
-            .bind { [weak self] filter in
-                guard let self = self else { return }
-                self.filter = filter
-                self.contentView.layer.borderColor = self.color?.cgColor
-                switch filter {
-                case .age(let age):
-                    self.filterNameLabel.text = age.title
-                    
-                case .style(let style):
-                    self.filterNameLabel.text = style.rawValue
-                }
-        }
-        .disposed(by: disposeBag)
     }
 }

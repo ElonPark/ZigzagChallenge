@@ -125,6 +125,10 @@ final class ShopFilterViewReactor: Reactor {
         case .setFilter(let indexPath):
             var section = newState.sections[indexPath.section]
             var item = section.items[indexPath.item]
+            item.isSelected.toggle()
+            section.items[indexPath.item] = item
+            newState.sections[indexPath.section] = section
+            
             let filter = item.filter
             switch filter {
             case .age(let age):
@@ -134,10 +138,6 @@ final class ShopFilterViewReactor: Reactor {
                 newState.selectedStyles = updatedFilterSet(by: newState.selectedStyles,
                                                            filter: style)
             }
-            
-            item.isSelected.toggle()
-            section.items[indexPath.item] = item
-            newState.sections[indexPath.section] = section
             
         case .setSelectedFilter(let filter):
             newState.selectedFilter = filter

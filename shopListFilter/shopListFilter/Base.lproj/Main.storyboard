@@ -87,7 +87,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstItem="ql5-9f-duZ" firstAttribute="top" secondItem="Fq9-fS-BX0" secondAttribute="top" id="429-cb-GWk"/>
                                                                         <constraint firstAttribute="trailing" secondItem="ql5-9f-duZ" secondAttribute="trailing" constant="3" id="a2p-hA-B9n"/>
@@ -105,7 +105,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstItem="x46-Be-LzX" firstAttribute="leading" secondItem="4sg-2b-7bK" secondAttribute="leading" constant="3" id="BCW-lf-Rfl"/>
                                                                         <constraint firstAttribute="trailing" secondItem="x46-Be-LzX" secondAttribute="trailing" constant="3" id="IKw-DX-4ak"/>
@@ -257,17 +257,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30대 초반" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-hI-9s3">
-                                                    <rect key="frame" x="8" y="10.5" width="64" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30대 초반" textAlignment="center" lineBreakMode="wordWrap" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-hI-9s3">
+                                                    <rect key="frame" x="8" y="3" width="64" height="33"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                    <color key="textColor" name="Cyan"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="8NB-hI-9s3" firstAttribute="leading" secondItem="FoD-jP-lgq" secondAttribute="leading" constant="8" id="2Bv-9r-5LT"/>
+                                                <constraint firstItem="8NB-hI-9s3" firstAttribute="top" secondItem="FoD-jP-lgq" secondAttribute="top" constant="3" id="3AQ-2L-EIA"/>
+                                                <constraint firstAttribute="bottom" secondItem="8NB-hI-9s3" secondAttribute="bottom" constant="3" id="Pjj-QK-ira"/>
                                                 <constraint firstAttribute="trailing" secondItem="8NB-hI-9s3" secondAttribute="trailing" constant="8" id="qKV-ag-NLW"/>
-                                                <constraint firstItem="8NB-hI-9s3" firstAttribute="centerY" secondItem="FoD-jP-lgq" secondAttribute="centerY" id="vsQ-DD-hRB"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="80" height="39"/>

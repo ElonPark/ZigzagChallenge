@@ -50,10 +50,3 @@ final class ShopRankingCellReactor: Reactor {
         return newState
     }
 }
-
-extension ShopRankingCellReactor: Equatable {
-    static func == (lhs: ShopRankingCellReactor, rhs: ShopRankingCellReactor) -> Bool {
-          return lhs.currentState.shopRank.shop.name == rhs.currentState.shopRank.shop.name
-      }
-      
-}

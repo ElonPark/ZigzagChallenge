@@ -33,9 +33,10 @@ final class ShopFilterViewController: UIViewController, StoryboardView {
             for: indexPath
             ) as? ShopFilterCell
         
-        cell?.reactor = ShopFilterCellReactor(filter: item.filter,
-                                              isSelected: item.isSelected)
-                
+        cell?.filter = item.filter
+        cell?.isSelected = item.isSelected
+        cell?.setSelected(item.isSelected)
+        
         return cell ?? UICollectionViewCell()
         
     }, configureSupplementaryView: { (dataSource, collectionView, kind, indexPath) -> UICollectionReusableView in
