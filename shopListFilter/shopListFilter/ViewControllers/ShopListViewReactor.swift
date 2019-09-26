@@ -67,9 +67,6 @@ final class ShopListViewReactor: Reactor {
             return .concat(startLoading, data, endLoading)
             
         case .selectFilter(let filterItem):
-            defer {
-                Log.debug(filterItem)
-            }
             guard let section = currentState.shopListSection else {
                 return .just(.setFilter(false))
             }

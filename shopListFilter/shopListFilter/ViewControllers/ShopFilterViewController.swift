@@ -35,7 +35,6 @@ final class ShopFilterViewController: UIViewController, StoryboardView {
         
         cell?.filter = item.filter
         cell?.isSelected = item.isSelected
-        cell?.setSelected(item.isSelected)
         
         return cell ?? UICollectionViewCell()
         
@@ -114,6 +113,7 @@ final class ShopFilterViewController: UIViewController, StoryboardView {
         // Output
      
         reactor.state.map { $0.sections }
+            .distinctUntilChanged()
             .bind(to: filterCollectionView.rx.items(dataSource: dataSource))
             .disposed(by: self.disposeBag)
     }
