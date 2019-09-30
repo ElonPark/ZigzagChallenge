@@ -53,8 +53,7 @@ final class ShopListViewReactor: Reactor {
                     let headerTitle = "\(weekRank.week)차 랭킹"
                     let items = weekRank.list.sorted(by: { $0.score < $1.score })
                         .enumerated()
-                        .map { value -> ShopRank in
-                            let (index, shop) = value
+                        .map { (index, shop) -> ShopRank in
                             var shopRank = ShopRank(shop: shop)
                             shopRank.rank = index + 1
                             return shopRank
@@ -104,8 +103,7 @@ final class ShopListViewReactor: Reactor {
             }
             .sorted { $0.rankValue < $1.rankValue }
             .enumerated()
-            .map { value in
-                let (index, item) = value
+            .map { (index, item) in
                 var newItem = item
                 newItem.rank = index + 1
                 return newItem
