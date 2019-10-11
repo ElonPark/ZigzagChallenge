@@ -51,7 +51,7 @@ final class ShopListViewReactor: Reactor {
                 .asObservable()
                 .map { weekRank in
                     let headerTitle = "\(weekRank.week)차 랭킹"
-                    let items = weekRank.list.sorted(by: { $0.score < $1.score })
+                    let items = weekRank.list.sorted(by: { $0.score > $1.score })
                         .enumerated()
                         .map { (index, shop) -> ShopRank in
                             var shopRank = ShopRank(shop: shop)
@@ -80,33 +80,14 @@ final class ShopListViewReactor: Reactor {
             
             var newSection = section
             newSection.filterValue = filterValue(by: filterItem)
-            newSection.items = section.items.compactMap { rank -> ShopRank? in
-                let (agePoint, stylePoint) = rank.calculationPoint(by: filterItem)
-                var newRank = rank
-                newRank.agePoint = agePoint
-                newRank.stylePoint = stylePoint
-                
-                guard newRank.point > 0 else { return nil }
-                if !filterItem.ages.isEmpty && agePoint < 1 {
-                    return nil
-                }
-                if !filterItem.styles.isEmpty && stylePoint < 1 {
-                    return nil
-                }
-                if !filterItem.ages.isEmpty && !filterItem.styles.isEmpty {
-                    if agePoint < 1 || stylePoint < 1 {
-                        return nil
-                    }
-                }
-                
-                return newRank
-            }
-            .sorted { $0.rankValue < $1.rankValue }
-            .enumerated()
-            .map { (index, item) in
-                var newItem = item
-                newItem.rank = index + 1
-                return newItem
+            let filteredItems = filteredShopRanks(origin: section.items,
+                                                  filter: filterItem)
+            newSection.items = sortedShopRanks(filteredItems)
+                .enumerated()
+                .map { (index, item) in
+                    var newItem = item
+                    newItem.rank = index + 1
+                    return newItem
             }
             
             return .concat(.just(.updateShopRanking(newSection)),
@@ -155,5 +136,55 @@ final class ShopListViewReactor: Reactor {
         }
         
         return filterValue
+    }
+    
+    private func sortedShopRanks(_ items: [ShopRank]) -> [ShopRank] {
+        var matchingMutilpleStyleItems: [ShopRank] = []
+        var matchingStyleItems: [ShopRank] = []
+        
+        for item in items {
+            if item.stylePoint > 1 {
+                matchingMutilpleStyleItems.append(item)
+            } else {
+                matchingStyleItems.append(item)
+            }
+        }
+        
+        matchingMutilpleStyleItems.sort {
+            if $0.stylePoint == $0.stylePoint {
+                return $0.shop.score > $1.shop.score
+            } else {
+                return $0.stylePoint > $0.stylePoint
+            }
+        }
+        
+        matchingStyleItems.sort { $0.shop.score > $1.shop.score }
+        matchingMutilpleStyleItems.append(contentsOf: matchingStyleItems)
+        
+        return matchingMutilpleStyleItems
+    }
+    
+    private func filteredShopRanks(origin items: [ShopRank], filter: SelectedFilter) -> [ShopRank] {
+        return items.compactMap { rank -> ShopRank? in
+            let (agePoint, stylePoint) = rank.calculationPoint(by: filter)
+            var newRank = rank
+            newRank.agePoint = agePoint
+            newRank.stylePoint = stylePoint
+            
+            guard newRank.point > 0 else { return nil }
+            if !filter.ages.isEmpty && agePoint < 1 {
+                return nil
+            }
+            if !filter.styles.isEmpty && stylePoint < 1 {
+                return nil
+            }
+            if !filter.ages.isEmpty && !filter.styles.isEmpty {
+                if agePoint < 1 || stylePoint < 1 {
+                    return nil
+                }
+            }
+            
+            return newRank
+        }
     }
 }
