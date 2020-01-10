@@ -15,7 +15,7 @@
 - shop-list-filter 실행 시 주의 사항
 
 ```shell
-$ cd /ZigzagChallenge/shopListFilter
+$ cd ./ZigzagChallenge/shopListFilter
 $ pod install --repo-update
 
 ```
