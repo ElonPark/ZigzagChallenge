@@ -25,18 +25,18 @@ final class ShopListViewController: UIViewController, StoryboardView {
     var disposeBag: DisposeBag = DisposeBag()
     
     typealias DataSource = RxTableViewSectionedReloadDataSource<ShopListSection>
-    private let dataSource = DataSource(configureCell: { (dataSource, tableView, indexPath, shopRank) -> UITableViewCell in
-        let cell = tableView.dequeueReusableCell(withIdentifier: ShopRankingCell.identifier,
-                                                 for: indexPath) as? ShopRankingCell
-        let reactor = ShopRankingCellReactor(shopRank: shopRank)
+    private let dataSource = DataSource(configureCell: { (dataSource, tableView, indexPath, reactor) -> UITableViewCell in
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: ShopRankingCell.identifier,
+            for: indexPath) as? ShopRankingCell
         cell?.reactor = reactor
-
+        
         return cell ?? UITableViewCell()
     })
     
-    let isFiltered: BehaviorRelay<Bool> = BehaviorRelay(value: false)
-    let filterButtonTap: PublishRelay<Void> = PublishRelay()
-    let selectedFilter: BehaviorRelay<SelectedFilter?> = BehaviorRelay(value: nil)
+    private let isFiltered: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    private let filterButtonTap: PublishRelay<Void> = PublishRelay()
+    private let selectedFilter: BehaviorRelay<SelectedFilter?> = BehaviorRelay(value: nil)
     
     deinit {
         Log.verbose(type(of: self))
@@ -44,29 +44,10 @@ final class ShopListViewController: UIViewController, StoryboardView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        filterButtonTap
-            .observeOn(MainScheduler.asyncInstance)
-            .bind { [weak self] in
-                guard let self = self else { return }
-                guard let filterVC = UIStoryboard.shopFilterVC() else { return }
-                let selectedFilter = self.selectedFilter.value ?? SelectedFilter()
-                filterVC.modalPresentationStyle = .overFullScreen
-                filterVC.reactor = ShopFilterViewReactor(selectedFilter: selectedFilter)
-                filterVC.reactor?.state
-                    .filter { $0.isSelectComplete }
-                    .map { $0.selectedFilter }
-                    .distinctUntilChanged()
-                    .bind(to: self.selectedFilter)
-                    .disposed(by: filterVC.disposeBag)
-                
-                self.present(filterVC, animated: true)
-        }
-        .disposed(by: disposeBag)
+        bindFilterButtonTap()
     }
 
     func bind(reactor: ShopListViewReactor) {
-        
         // Input
         
         Observable.just(Reactor.Action.loadData)
@@ -101,6 +82,26 @@ final class ShopListViewController: UIViewController, StoryboardView {
             .disposed(by: self.disposeBag)
     }
     
+    private func bindFilterButtonTap() {
+        filterButtonTap
+            .observeOn(MainScheduler.asyncInstance)
+            .bind { [weak self] in
+                guard let self = self else { return }
+                guard let filterVC = UIStoryboard.shopFilterVC() else { return }
+                let selectedFilter = self.selectedFilter.value ?? SelectedFilter()
+                filterVC.modalPresentationStyle = .overFullScreen
+                filterVC.reactor = ShopFilterViewReactor(selectedFilter: selectedFilter)
+                filterVC.reactor?.state
+                    .filter { $0.isSelectComplete }
+                    .map { $0.selectedFilter }
+                    .distinctUntilChanged()
+                    .bind(to: self.selectedFilter)
+                    .disposed(by: filterVC.disposeBag)
+                
+                self.present(filterVC, animated: true)
+        }
+        .disposed(by: disposeBag)
+    }
 }
 
 
@@ -117,11 +118,7 @@ extension ShopListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if isFiltered.value {
-            return 75.0
-        } else {
-            return 50.0
-        }
+        return isFiltered.value ? 75.0 : 50.0
     }
 }
 

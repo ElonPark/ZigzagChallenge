@@ -127,24 +127,23 @@ final class ShopFilterViewController: UIViewController, StoryboardView {
 extension ShopFilterViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let gap: CGFloat = 8
-        let sideInset: CGFloat = 15 * 2
-        let width = UIScreen.main.bounds.size.width
-
         let filter = dataSource[indexPath.section].items[indexPath.item].filter
         switch filter {
         case .age:
-            let lineItemCount: CGFloat = 4
-            let cellWidth = (width - sideInset - (gap * (lineItemCount - 1))) / lineItemCount
-
-            return CGSize(width: cellWidth, height: 32)
+            let width = cellWidth(byIineItemCount: 4.0)
+            return CGSize(width: width, height: 32)
 
         case .style:
-            let lineItemCount: CGFloat = 3
-            let cellWidth = (width - sideInset - (gap * (lineItemCount - 1))) / lineItemCount
-            
-            return CGSize(width: cellWidth, height: 32)
+            let width = cellWidth(byIineItemCount: 3.0)
+            return CGSize(width: width, height: 32)
         }
+    }
+    
+    private func cellWidth(byIineItemCount count: CGFloat) -> CGFloat {
+        let gap: CGFloat = 8
+        let sideInset: CGFloat = 15 * 2
+        let width = UIScreen.main.bounds.size.width
+        let cellWidth = (width - sideInset - (gap * (count - 1))) / count
+        return floor(cellWidth)
     }
 }

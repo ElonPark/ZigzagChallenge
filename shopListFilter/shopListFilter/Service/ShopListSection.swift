@@ -11,12 +11,12 @@ import RxDataSources
 struct ShopListSection: Equatable {
     var header: String
     var filterValue: String = ""
-    var items: [ShopRank]
+    var items: [ShopRankingCellReactor]
 }
 
 extension ShopListSection: SectionModelType {
     
-    init(original: ShopListSection, items: [ShopRank]) {
+    init(original: ShopListSection, items: [ShopRankingCellReactor]) {
         self = original
         self.items = items
     }

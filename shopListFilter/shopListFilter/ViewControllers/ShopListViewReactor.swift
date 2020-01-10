@@ -44,19 +44,19 @@ final class ShopListViewReactor: Reactor {
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .loadData:
-            let startLoading: Observable<Mutation> = .just(.setLoading(true))
-            let endLoading: Observable<Mutation> = .just(.setLoading(false))
+            let startLoading = Observable<Mutation>.just(.setLoading(true))
+            let endLoading = Observable<Mutation>.just(.setLoading(false))
             
             let data = networkService.sample()
                 .asObservable()
                 .map { weekRank in
                     let headerTitle = "\(weekRank.week)차 랭킹"
-                    let items = weekRank.list.sorted(by: { $0.score > $1.score })
+                    let items = weekRank.list.sorted { $0.score > $1.score }
                         .enumerated()
-                        .map { (index, shop) -> ShopRank in
+                        .map { (index, shop) -> ShopRankingCellReactor in
                             var shopRank = ShopRank(shop: shop)
                             shopRank.rank = index + 1
-                            return shopRank
+                            return ShopRankingCellReactor(shopRank: shopRank)
                     }
                     
                     return ShopListSection(header: headerTitle, items: items)
@@ -87,11 +87,10 @@ final class ShopListViewReactor: Reactor {
                 .map { (index, item) in
                     var newItem = item
                     newItem.rank = index + 1
-                    return newItem
+                    return ShopRankingCellReactor(shopRank: newItem)
             }
             
-            return .concat(.just(.updateShopRanking(newSection)),
-                           .just(.setFilter(true)))
+            return .concat(.just(.updateShopRanking(newSection)), .just(.setFilter(true)))
         }
     }
     
@@ -137,10 +136,35 @@ final class ShopListViewReactor: Reactor {
         
         return filterValue
     }
+
+    private func filteredShopRanks(origin items: [ShopRankingCellReactor], filter: SelectedFilter) -> [ShopRank] {
+        return items.compactMap { reactor -> ShopRank? in
+            let rank = reactor.currentState.shopRank
+            let (agePoint, stylePoint) = rank.calculationPoint(by: filter)
+            var newRank = rank
+            newRank.agePoint = agePoint
+            newRank.stylePoint = stylePoint
+            
+            guard newRank.point > 0 else { return nil }
+            if !filter.ages.isEmpty && agePoint < 1 {
+                return nil
+            }
+            if !filter.styles.isEmpty && stylePoint < 1 {
+                return nil
+            }
+            if !filter.ages.isEmpty && !filter.styles.isEmpty {
+                if agePoint < 1 || stylePoint < 1 {
+                    return nil
+                }
+            }
+
+            return newRank
+        }
+    }
     
     private func sortedShopRanks(_ items: [ShopRank]) -> [ShopRank] {
-        var matchingMutilpleStyleItems: [ShopRank] = []
-        var matchingStyleItems: [ShopRank] = []
+        var matchingMutilpleStyleItems = [ShopRank]()
+        var matchingStyleItems = [ShopRank]()
         
         for item in items {
             if item.stylePoint > 1 {
@@ -162,29 +186,5 @@ final class ShopListViewReactor: Reactor {
         matchingMutilpleStyleItems.append(contentsOf: matchingStyleItems)
         
         return matchingMutilpleStyleItems
-    }
-    
-    private func filteredShopRanks(origin items: [ShopRank], filter: SelectedFilter) -> [ShopRank] {
-        return items.compactMap { rank -> ShopRank? in
-            let (agePoint, stylePoint) = rank.calculationPoint(by: filter)
-            var newRank = rank
-            newRank.agePoint = agePoint
-            newRank.stylePoint = stylePoint
-            
-            guard newRank.point > 0 else { return nil }
-            if !filter.ages.isEmpty && agePoint < 1 {
-                return nil
-            }
-            if !filter.styles.isEmpty && stylePoint < 1 {
-                return nil
-            }
-            if !filter.ages.isEmpty && !filter.styles.isEmpty {
-                if agePoint < 1 || stylePoint < 1 {
-                    return nil
-                }
-            }
-            
-            return newRank
-        }
     }
 }

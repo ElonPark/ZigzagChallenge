@@ -12,7 +12,7 @@ import ReactorKit
 import RxSwift
 
 final class ShopRankingCellReactor: Reactor {
-        
+    
     enum Action {
         case select(Bool)
     }
@@ -48,5 +48,11 @@ final class ShopRankingCellReactor: Reactor {
          }
         
         return newState
+    }
+}
+
+extension ShopRankingCellReactor: Equatable {
+    static func == (lhs: ShopRankingCellReactor, rhs: ShopRankingCellReactor) -> Bool {
+        return lhs.currentState == rhs.currentState
     }
 }
